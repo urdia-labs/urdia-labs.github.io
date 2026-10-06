@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>URDIA | TikTok authorization</title>
+<meta name="description" content="URDIA TikTok authorization callback">
+<link rel="icon" type="image/png" href="../../../ICONTIKTOK.png">
+<link rel="apple-touch-icon" href="../../../ICONTIKTOK.png">
+<style>
+body{margin:0;min-height:100vh;display:grid;place-items:center;font-family:Inter,Segoe UI,Arial,sans-serif;background:#08101f;color:#eaf0ff;padding:24px}
+.card{width:min(620px,100%);padding:42px;border:1px solid #20304e;border-radius:24px;background:#0d172b;box-shadow:0 24px 70px rgba(0,0,0,.25)}
+.brand{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none;font-weight:800;letter-spacing:.12em}.brand img{width:48px;height:48px;border-radius:12px}
+h1{font-size:38px;line-height:1.08;margin:34px 0 14px}p{color:#b8c4df;line-height:1.7}
+.status{margin-top:24px;padding:16px;border-radius:14px;background:#111f38;border:1px solid #2a3d61}
+a{color:#83a0ff}
+</style>
+</head>
+<body>
+<main class="card">
+<a class="brand" href="../../../index.html"><img src="../../../ICONTIKTOK.png" alt="URDIA"><span>URDIA</span></a>
+<h1>TikTok authorization callback</h1>
+<p id="message">Processing the authorization response...</p>
+<div class="status">This public callback page is part of the URDIA WEB Login Kit flow. Authorization codes and secrets are not stored on this page.</div>
+<p><a href="../../../index.html">Return to URDIA</a></p>
+</main>
+<script>
+const params=new URLSearchParams(window.location.search);
+const message=document.getElementById("message");
+if(params.get("error")){
+  message.textContent="TikTok returned an authorization error. Return to URDIA and try again.";
+}else if(params.get("code")&&params.get("state")){
+  message.textContent="Authorization response received. The URDIA server must validate the state and exchange the code securely.";
+}else{
+  message.textContent="No authorization response was received.";
+}
+</script>
+</body>
+</html>
